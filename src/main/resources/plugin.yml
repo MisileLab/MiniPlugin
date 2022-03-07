@@ -1,6 +1,6 @@
-name: sample
+name: MiniPlugin
 version: 0.0.1
-main: com.chizstudio.misilelaboratory
+main: com.chizstudio.misilelaboratory.miniplugin.MiniPlugin
 api-version: 1.17
 libraries:
   - org.jetbrains.kotlin:kotlin-stdlib:1.6.10
