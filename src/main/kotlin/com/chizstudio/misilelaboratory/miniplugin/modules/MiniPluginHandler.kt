@@ -5,8 +5,10 @@ import org.bukkit.entity.Boss
 import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Monster
+import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntitySpawnEvent
 
 private val Double.onePercent: Double
@@ -40,10 +42,18 @@ class MiniPluginHandler: Listener {
             }
             else {
                 entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)?.baseValue = entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)!!.baseValue.onePercent * 140
-                if ((1..100).random() <= 5) {
+                if ((1..100).random() <= 2) {
                     eliteamountup(entity)
                 }
             }
+        }
+    }
+
+    @EventHandler
+    fun someHitEvent(e: EntityDamageByEntityEvent) {
+        val damager = e.damager
+        if (e.entity is Player && damager is Player) {
+            e.isCancelled = true
         }
 
     }
